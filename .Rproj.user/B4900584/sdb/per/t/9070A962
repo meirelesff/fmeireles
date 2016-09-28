@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "fmeireles\n=====\n\n[![Travis-CI Build Status](https://travis-ci.org/meirelesff/fmeireles.svg?branch=master)](https://travis-ci.org/meirelesff/fmeireles)\n\nMy personal R package.\n",
+    "created" : 1475099182153.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "366457724",
+    "id" : "9070A962",
+    "lastKnownWriteTime" : 1475099186,
+    "last_content_update" : 1475099186035,
+    "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/README.md",
+    "project_path" : "README.md",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}
