@@ -1,0 +1,10 @@
+Package: fmeireles
+Type: Package
+Title: My personal R package
+Version: 0.1.0
+Authors@R: person("Fernando", "Meireles", email = "fernando.meireles@ufrgs.br", role = c("aut", "cre"))
+Description: Functions and tools to clean and visualize data.
+License: GPL (>= 2)
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Imports: ggplot2
