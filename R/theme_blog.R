@@ -56,7 +56,7 @@ scale_color_blog <- function(...){
 
 scale_fill_blog <- function(...){
 
-  ggplot2::discrete_scale("colour", "meublog", blog_pal(), ...)
+  ggplot2::discrete_scale("fill", "meublog", blog_pal(), ...)
 }
 
 
