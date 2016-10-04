@@ -4,12 +4,14 @@
 \alias{theme_blog}
 \title{My ggplot2 blog theme}
 \usage{
-theme_blog(tam.fonte = 14, fonte = "sans")
+theme_blog(tamanho = 14, fonte = "sans", title.fonte = NULL)
 }
 \arguments{
-\item{tam.fonte}{Font size}
+\item{tamanho}{Font size}
 
 \item{fonte}{Font type}
+
+\item{title.fonte}{Title's font type}
 }
 \description{
 A ggplot2 theme for my blog plots.
