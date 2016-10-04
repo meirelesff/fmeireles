@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "library(ggplot2)\n\ndf <- data.frame(x = rnorm(100), y = rnorm(100))\n\n\n\np1 <- ggplot(df, aes(x = x, y = y)) + geom_point() +\n  geom_smooth(method = \"lm\", se = F, color = \"orange\") +\n  labs(title = \"Competição eleitoral\",\n       subtitle = \"Número de Candidatos Efetivos por Distrito Eleitoral\",\n       caption = \"fmeireles.com\",\n       y = \"Eixo Y\", x = \"Eixo X\") +\n  theme_blog(tamanho = 18, fonte = \"Open Sans\", title.fonte = \"PT Sans\")\n\np2 <- ggplot(df, aes(x = x, y = y)) + geom_point() +\n  geom_smooth(method = \"lm\", se = F, color = \"orange\") +\n  labs(title = \"Competição eleitoral\",\n       subtitle = \"Número de Candidatos Efetivos por Distrito Eleitoral\",\n       caption = \"fmeireles.com\",\n       y = \"Eixo Y\", x = \"Eixo X\") +\n  theme_blog(tamanho = 18, fonte = \"Open Sans\", title.fonte = \"Open Sans\")\n\npdf(\"teste2.pdf\")\ngrid.arrange(p1, p2, ncol = 2)\ndev.off()\n\n\npng(filename = \"teste2.png\", width = 940, height = 480, type = \"cairo-png\")\ngrid.arrange(p1, p2, ncol = 2)\ndev.off()\n\n\n\n",
+    "contents" : "library(extrafont)\nlibrary(ggplot2)\n\ndf <- data.frame(x = rnorm(100), y = rnorm(100))\ndf$z <- ifelse(df$x > 1, \"a\", ifelse(df$y > 1, \"b\", \"c\"))\ndf$z <- ifelse(df$x > 1, \"a\", ifelse(df$y > 1, \"b\", ifelse(df$y < 0, \"c\", \"d\")))\n\n\n\n\n\np1 <- ggplot(df, aes(x = x, y = y, color = z)) + geom_point() +\n  geom_smooth(method = \"lm\", se = F) +\n  labs(title = \"Competição eleitoral\",\n       subtitle = \"Número de Candidatos Efetivos por Distrito Eleitoral\",\n       caption = \"fmeireles.com\",\n       y = \"Eixo Y\", x = \"Eixo X\") +\n  theme_blog(tamanho = 18, fonte = \"Open Sans\", title.fonte = \"PT Sans\") +\n  scale_color_blog()\n\np2 <- ggplot(df, aes(x = x, y = y)) + geom_point() +\n  geom_smooth(method = \"lm\", se = F, color = \"orange\") +\n  labs(title = \"Competição eleitoral\",\n       subtitle = \"Número de Candidatos Efetivos por Distrito Eleitoral\",\n       caption = \"fmeireles.com\",\n       y = \"Eixo Y\", x = \"Eixo X\") +\n  theme_blog(tamanho = 18, fonte = \"Open Sans\", title.fonte = \"Open Sans\")\n\npdf(\"teste2.pdf\")\ngrid.arrange(p1, p2, ncol = 2)\ndev.off()\n\n\npng(filename = \"teste2.png\", width = 940, height = 480, type = \"cairo-png\")\ngrid.arrange(p1, p2, ncol = 2)\ndev.off()\n\n\n\n",
     "created" : 1475593591851.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1764057094",
+    "hash" : "932086637",
     "id" : "AC375898",
-    "lastKnownWriteTime" : 1475601526,
-    "last_content_update" : 1475601526983,
+    "lastKnownWriteTime" : 1475603611,
+    "last_content_update" : 1475603611318,
     "path" : "E:/graficos_blog.R",
     "project_path" : null,
     "properties" : {

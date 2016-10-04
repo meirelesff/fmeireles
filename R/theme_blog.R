@@ -29,3 +29,51 @@ theme_blog <- function(tamanho = 14, fonte = "sans", title.fonte = NULL){
                     legend.title = element_blank(),
                     legend.margin = ggplot2::margin(12, 0, 0, 0)))
 }
+
+
+
+#' My ggplot2 blog scale colour
+#'
+#' A scale_colour function
+#'
+#' @inheritParams ggplot2::scale_colour_hue
+#' @rdname scale_blog
+#' @export
+
+scale_color_blog <- function(...){
+
+  ggplot2::discrete_scale("colour", "meublog", blog_pal(), ...)
+}
+
+
+
+#' My ggplot2 blog fill colour
+#'
+#' A scale_fill function
+#'
+#' @rdname scale_blog
+#' @export
+
+scale_fill_blog <- function(...){
+
+  ggplot2::discrete_scale("colour", "meublog", blog_pal(), ...)
+}
+
+
+
+#' My ggplot2 blog palette
+#'
+#' A palette of colours
+#'
+#' @importFrom grDevices colors
+#' @rdname scale_blog
+#' @export
+blog_pal <- function() {
+
+  function(n) {
+    colors <- c("orange", "black", "orange4", "orangered3", "seagreen4", "green", "blue4")
+    unname(grDevices::colors[seq_len(n)])
+  }
+}
+
+
