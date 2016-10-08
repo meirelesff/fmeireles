@@ -41,7 +41,7 @@ rdd <- function(y, x, rep = c("all", "conv"), ...){
 #' @param ... Aditional arguments
 #'
 #' @importFrom rdrobust rdrobust
-#' @import dplyr
+#' @importFrom dplyr bind_rows mutate %>%
 #'
 #' @export
 
