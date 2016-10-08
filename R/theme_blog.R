@@ -65,14 +65,13 @@ scale_fill_blog <- function(...){
 #'
 #' A palette of colours
 #'
-#' @importFrom grDevices colors
 #' @rdname scale_blog
 #' @export
 blog_pal <- function() {
 
   function(n) {
     colors <- c("orange", "black", "orange4", "orangered3", "seagreen4", "green", "blue4")
-    unname(grDevices::colors[seq_len(n)])
+    unname(colors[seq_len(n)])
   }
 }
 

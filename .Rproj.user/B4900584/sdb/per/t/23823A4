@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' rdrobust wrapper\n#'\n#' A wrapper function to estimate multiple rdds.\n#'\n#'\n#' @param y Dependent variable\n#' @param x Forcing variable\n#' @param rep Report all results or just the conventional ones?\n#' @param ... Aditional arguments\n#'\n#' @importFrom rdrobust rdrobust\n#'\n#' @export\n\nrdd <- function(y, x, rep = c(\"all\", \"conv\"), ...){\n\n\n  rep <- match.arg(rep)\n  mod <- rdrobust::rdrobust(y = y, x = x, ...)\n  out <- as.data.frame(rdrobust::summary.rdrobust(mod)$coefficients)[, c(1, 2, 4)]\n\n  if(is.null(mod$h)) out$h <- \"all\"\n  else out$h <- mod$h\n\n  out$N <- mod$N_h_l + mod$N_h_r\n\n  names(out) <- c(\"coef\", \"sd\", \"p-value\", \"h\", \"N\")\n  if(rep == \"conv\") return(out[1, ])\n  else return(out)\n}\n\n\n\n#' Check RDD\n#'\n#' A wrapper function to estimate multiple rdds with different polynomials.\n#'\n#'\n#' @param y Dependent variable\n#' @param x Forcing variable\n#' @param ... Aditional arguments\n#'\n#' @importFrom rdrobust rdrobust\n#' @import dplyr\n#'\n#' @export\n\ncheck_rdd <- function(y, x, ...){\n\n  lapply(1:5, function(p) rdd(x = x, y = y, rep = \"conv\", p = p, q = p + 1, ...)) %>%\n    dplyr::bind_rows() %>%\n    dplyr::mutate(poly = rownames(.))\n}\n\n\n\n#' Triangular kernel\n#'\n#' Calculate triagular kernel weigths.\n#'\n#'\n#' @param x A numeric vector\n#' @param h Bandwidth\n#' @param c Cutoff\n#'\n#' @export\n\ntriangular <- function(x, h, c){\n\n  if(!is.numeric(x)) stop(\"x must be numeric.\")\n  1 - abs(x - c) / h\n}\n",
+    "created" : 1475951322484.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3726223529",
+    "id" : "23823A4",
+    "lastKnownWriteTime" : 1475956104,
+    "last_content_update" : 1475956104543,
+    "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/R/rdd_funs.R",
+    "project_path" : "R/rdd_funs.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
