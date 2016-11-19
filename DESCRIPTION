@@ -7,4 +7,4 @@ Description: Functions and tools to clean, visualize, and analyze data.
 License: GPL (>= 2)
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Imports: ggplot2, dplyr, rdrobust, stats
+Imports: ggplot2, dplyr, rdrobust, stats, Formula, sandwich
