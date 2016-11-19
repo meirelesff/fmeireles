@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "Package: fmeireles\nType: Package\nTitle: My personal R package\nVersion: 0.1.0\nAuthors@R: person(\"Fernando\", \"Meireles\", email = \"fernando.meireles@ufrgs.br\", role = c(\"aut\", \"cre\"))\nDescription: Functions and tools to clean, visualize, and analyze data.\nLicense: GPL (>= 2)\nLazyData: TRUE\nRoxygenNote: 5.0.1\nImports: ggplot2, dplyr, rdrobust, stats, Formula, sandwich\n",
+    "contents" : "Package: fmeireles\nType: Package\nTitle: My personal R package\nVersion: 0.1.0\nAuthors@R: person(\"Fernando\", \"Meireles\", email = \"fernando.meireles@ufrgs.br\", role = c(\"aut\", \"cre\"))\nDescription: Functions and tools to clean, visualize, and analyze data.\nLicense: GPL (>= 2)\nLazyData: TRUE\nRoxygenNote: 5.0.1\nImports: ggplot2, dplyr, rdrobust, stats, Formula, sandwich, lmtest\n",
     "created" : 1479561415222.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3172948283",
+    "hash" : "476389756",
     "id" : "A3FE0C42",
-    "lastKnownWriteTime" : 1479561425,
-    "last_content_update" : 1479561425079,
+    "lastKnownWriteTime" : 1479562968,
+    "last_content_update" : 1479562968137,
     "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/DESCRIPTION",
     "project_path" : "DESCRIPTION",
     "properties" : {

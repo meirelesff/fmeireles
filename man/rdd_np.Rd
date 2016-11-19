@@ -4,7 +4,7 @@
 \alias{rdd_np}
 \title{Non-parametric RDD}
 \usage{
-rdd_np(formula, data, h = "All")
+rdd_np(formula, data, h = "All", w = NULL)
 }
 \arguments{
 \item{formula}{Formula}
@@ -12,6 +12,8 @@ rdd_np(formula, data, h = "All")
 \item{data}{Data}
 
 \item{h}{Bandwidth}
+
+\item{w}{wwigths}
 }
 \description{
 Non-parametric RDD estimation

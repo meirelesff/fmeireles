@@ -6,6 +6,7 @@
 #' @param formula Formula
 #' @param data Data
 #' @param h Bandwidth
+#' @param w wwigths
 #'
 #' @import Formula
 #' @import sandwich
@@ -13,11 +14,11 @@
 #'
 #' @export
 
-rdd_np <- function(formula, data, h = "All"){
+rdd_np <- function(formula, data, h = "All", w = NULL){
 
 
   formula <- Formula::as.Formula(formula)
-  mod <- lm(formula, data = data)
+  mod <- lm(formula, weights = w, data = data)
 
   coef <- as.numeric(coef(mod)[2])
   se <- as.numeric(sqrt(diag(sandwich::vcovHC(mod, type = "HC1")))[2])
@@ -36,7 +37,8 @@ rdd_np <- function(formula, data, h = "All"){
   out <- list(res = res,
               coef = coef,
               se = se,
-              pval = pval)
+              pval = pval,
+              mod = mod)
 
   out
 }
