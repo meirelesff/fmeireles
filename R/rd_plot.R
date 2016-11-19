@@ -319,6 +319,6 @@ rd_plot <- function(x, y, c = 0, p = 2, numbinl = NULL, numbinr = NULL, binselec
   else if(p == 4) forms <- as.Formula(y ~ x + I(x^2) + I(x^3) + I(x^4))
 
   ggplot2::ggplot(dados, aes(x, y, group = factor(treat))) + ggplot2::stat_smooth(method = "lm", formula = forms, se = F, colour = "black", alpha = 0.2, size = .82) +
-    ggplot2::geom_point(size = 1.4, color = "gray5") + ggplot2::geom_vline(xintercept = c, linetype = 2, size = 0.4) + ggplot2::scale_y_continuous(expand = c(0, 0), limits = y.lim) +
+    ggplot2::geom_point(size = 1.1, color = "gray5") + ggplot2::geom_vline(xintercept = c, linetype = 2, size = 0.4) + ggplot2::scale_y_continuous(expand = c(0, 0), limits = y.lim) +
     ggplot2::scale_x_continuous(expand = c(0, 0))
 }
