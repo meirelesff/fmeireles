@@ -19,6 +19,7 @@
 #' @param ... Further arguments
 #'
 #' @import ggplot2
+#' @importFrom Formula as.Formula
 #' @importFrom stats complete.cases lm quantile var
 #'
 #' @return A ggplot2 object
@@ -312,7 +313,12 @@ rd_plot <- function(x, y, c = 0, p = 2, numbinl = NULL, numbinr = NULL, binselec
   dados <- data.frame(x = bin_xmean[order(bin_xmean)], y = bin_ymean[order(bin_xmean)], treat = treat)
   dados$treat[dados$x >= c] <- 1
 
-  ggplot2::ggplot(dados, aes(x, y, group = factor(treat))) + ggplot2::stat_smooth(method = "lm", formula = y ~ x + I(x^2), se = F, colour = "black", alpha = 0.2, size = .82) +
+  if(p == 1) forms <- as.Formula(y ~ x)
+  else if(p == 2) forms <- as.Formula(y ~ x + I(x^2))
+  else if(p == 3) forms <- as.Formula(y ~ x + I(x^2) + I(x^3))
+  else if(p == 4) forms <- as.Formula(y ~ x + I(x^2) + I(x^3) + I(x^4))
+
+  ggplot2::ggplot(dados, aes(x, y, group = factor(treat))) + ggplot2::stat_smooth(method = "lm", formula = forms, se = F, colour = "black", alpha = 0.2, size = .82) +
     ggplot2::geom_point(size = 1.4, color = "gray5") + ggplot2::geom_vline(xintercept = c, linetype = 2, size = 0.4) + ggplot2::scale_y_continuous(expand = c(0, 0), limits = y.lim) +
     ggplot2::scale_x_continuous(expand = c(0, 0))
 }
