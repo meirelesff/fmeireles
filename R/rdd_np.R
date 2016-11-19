@@ -6,7 +6,7 @@
 #' @param formula Formula
 #' @param data Data
 #' @param h Bandwidth
-#' @param w wwigths
+#' @param w weigths
 #'
 #' @import Formula
 #' @import sandwich
@@ -18,7 +18,9 @@ rdd_np <- function(formula, data, h = "All", w = NULL){
 
 
   formula <- Formula::as.Formula(formula)
-  mod <- lm(formula, weights = w, data = data)
+
+  if(is.null(w)) mod <- lm(formula, data = data)
+  else mod <- lm(formula, data = data, weights = w)
 
   coef <- as.numeric(coef(mod)[2])
   se <- as.numeric(sqrt(diag(sandwich::vcovHC(mod, type = "HC1")))[2])
@@ -32,12 +34,18 @@ rdd_np <- function(formula, data, h = "All", w = NULL){
     stop("COEF wrong.")
 
   pval <- 2 * stats::pnorm(abs(coef / se), lower.tail = F)
-  res <- data.frame(coef = round(coef, 2), se = round(se, 2), pval = round(pval, 2), h = h, N = N)
+
+  if(pval < 0.05) coef_ast <- paste0(round(coef, 2), "*")
+  else coef_ast <- round(coef, 2)
+
+  res <- data.frame(coef = coef_ast, se = round(se, 2), pval = round(pval, 2), bw = h, N = N)
+  res <- apply(res, 2, as.character)
 
   out <- list(res = res,
               coef = coef,
               se = se,
               pval = pval,
+              h = h,
               mod = mod)
 
   out

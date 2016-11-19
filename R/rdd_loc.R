@@ -88,7 +88,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
   if(pval < 0.05) coef_ast <- paste0(round(coef, 2), "*")
   else coef_ast <- round(coef, 2)
 
-  res <- data.frame(var.name = var.name, med_trat = med_trat, med_cont = med_controle, dif = med_trat - med_controle,  coef = coef_ast, se = round(se, 2), ci = paste0("[", ci_low, ", ", ci_up, "]"), pval = round(pval, 2), N = N, stringsAsFactors = F)
+  res <- data.frame(var.name = var.name, med_trat = med_trat, med_cont = med_controle, dif = med_trat - med_controle,  coef = coef_ast, se = round(se, 2), ci = paste0("[", ci_low, ", ", ci_up, "]"), pval = round(pval, 2), bw = round(h, 2), N = N, stringsAsFactors = F)
   res <- apply(res, 2, as.character)
   out <- list(res = res, coef = coef, se = se, pval = pval, N = N, bw = h)
   out

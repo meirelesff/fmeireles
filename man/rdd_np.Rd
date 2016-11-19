@@ -13,7 +13,7 @@ rdd_np(formula, data, h = "All", w = NULL)
 
 \item{h}{Bandwidth}
 
-\item{w}{wwigths}
+\item{w}{weigths}
 }
 \description{
 Non-parametric RDD estimation
