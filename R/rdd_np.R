@@ -7,6 +7,7 @@
 #' @param data Data
 #' @param h Bandwidth
 #' @param w weigths
+#' @param var.name Variable name
 #'
 #' @import Formula
 #' @import sandwich
@@ -14,7 +15,7 @@
 #'
 #' @export
 
-rdd_np <- function(formula, data, h = "All", w = NULL){
+rdd_np <- function(formula, data, h = "All", w = NULL, var.name = "var"){
 
 
   formula <- Formula::as.Formula(formula)
@@ -38,7 +39,7 @@ rdd_np <- function(formula, data, h = "All", w = NULL){
   if(pval < 0.05) coef_ast <- paste0(round(coef, 2), "*")
   else coef_ast <- round(coef, 2)
 
-  res <- data.frame(coef = coef_ast, se = round(se, 2), pval = round(pval, 2), bw = h, N = N)
+  res <- data.frame(var.name = var.name, coef = coef_ast, se = round(se, 2), pval = round(pval, 2), bw = h, N = N)
   res <- apply(res, 2, as.character)
 
   out <- list(res = res,
