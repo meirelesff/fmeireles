@@ -55,7 +55,7 @@ plot_bw <- function(x, y, c = 0, p = 1, triangular = T, cluster = NULL, h_bw = N
 
     coef2 <- ci_up2 <- ci_low2 <- numeric(length(h))
     for (i in 1:length(h)) {
-      reg <- loc_rdd(x = x, y = y, c = c, p = 0, triangular = triangular, cluster = cluster, h = h[i])
+      reg <- rdd_loc(x = x, y = y, c = c, p = 0, triangular = triangular, cluster = cluster, h = h[i])
       coef2[i] <- reg$coef
       ci_up2[i] <- reg$coef + 1.96 * reg$se
       ci_low2[i] <- reg$coef - 1.96 * reg$se
