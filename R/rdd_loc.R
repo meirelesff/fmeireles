@@ -32,7 +32,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
   if(!is.logical(triangular)) stop("triangular must be logical.")
 
   # cleans the data
-  if(!is.null(cluster)) data <- data.frame(x = x, y = y, cluster = cluster)
+  if(!is.null(cluster)) data <- data.frame(x = x, y = y, cluster = as.character(cluster))
   else data <- data.frame(x = x, y = y)
   data <- data[complete.cases(data),]
   data$x <- data$x - c
@@ -45,7 +45,6 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
   }
 
   data <- data[data$x > -h & data$x < h,]
-  if(!is.null(cluster)) data$cluster <- as.character(data$cluster)
   data$treat <- data$x >= 0
   if(length(unique(data$treat)) != 2) stop("There is not variation in the treatment.")
 
@@ -65,7 +64,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
   coef <- as.numeric(coef(reg)[2])
   if(!is.null(cluster)){
 
-    cluster_se <- function(model, cluster) {
+    cluster_se <- function(model, cluster){
       M <- length(unique(cluster))
       N <- length(cluster)
       K <- model$rank
@@ -76,7 +75,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
       return(rcse.se[2, 2])
     }
 
-    se <- cluster_se(model = reg, cluster = cluster)
+    se <- cluster_se(model = reg, cluster = data$cluster)
   }
   else se <- as.numeric(sqrt(diag(sandwich::vcovHC(reg, type = "HC1")))[2])
   ci_low <- round(coef - 1.96 * se, 2)
