@@ -1,12 +1,12 @@
 #' RDD local
 #'
-#' Estimate local RDD.
+#' Estimate local RDD (or non-parametric).
 #'
 #' @param x Scores;
 #' @param y Dependent variable;
 #' @param c Cutpoint;
 #' @param cluster Cluster se;
-#' @param p Poly order (default 1);
+#' @param p Poly order (default 1; 0 for non-parametric);
 #' @param bw Bandwitdh selector (default mserd);
 #' @param var.name Variable name;
 #' @param h Bandwidth. If filled, \code{bw} is ignored;
@@ -25,7 +25,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
 
   # tests the inputs
   if(!is.numeric(x) | !is.numeric(y)) stop("x e y must be numeric.")
-  if(!p %in% c(1:5)) stop("p must be between 1 and 5.")
+  if(!p %in% c(0:5)) stop("p must be between 1 and 5.")
   xrange <- range(x, na.rm = T)
   if(c < xrange[1] | c > xrange[2]) stop("c is out of x.")
   if(!is.character(var.name) & !is.null(var.name)) stop("var.name must be character.")
@@ -55,7 +55,8 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
   if(triangular) weights <- 1 - abs(data$x) / h
   else weights <- NULL
 
-  if(p == 1) reg <- lm(y ~ treat * x, data = data, weights = weights)
+  if(p == 0) reg <- lm(y ~ treat, data = data, weights = weights)
+  else if(p == 1) reg <- lm(y ~ treat * x, data = data, weights = weights)
   else if(p == 2) reg <- lm(y ~ treat*x + treat*I(x^2), data = data, weights = weights)
   else if(p == 3) reg <- lm(y ~ treat*x + treat*I(x^2) + treat*I(x^3), data = data, weights = weights)
   else if(p == 4) reg <- lm(y ~ treat*x + treat*I(x^2) + treat*I(x^3) + treat*I(x^4), data = data, weights = weights)

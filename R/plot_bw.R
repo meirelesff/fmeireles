@@ -8,6 +8,7 @@
 #' @param p Poly order (default 1);
 #' @param triangular Triangular kernel? (default TRUE);
 #' @param h_bw Vector with initial, final and breaks to calculte the bandwidths;
+#' @param np Plot non-parametric estimates? (default FALSE).
 #'
 #' @import ggplot2
 #' @import Formula
@@ -16,7 +17,7 @@
 #'
 #' @return A ggplot object;
 
-plot_bw <- function(x, y, c = 0, p = 1, triangular = T, h_bw = NULL){
+plot_bw <- function(x, y, c = 0, p = 1, triangular = T, h_bw = NULL, np = FALSE){
 
   # Input tests
   if(!is.numeric(x) | !is.numeric(c)) stop("x and c must be numeric.") else xc <- x - c
@@ -42,9 +43,29 @@ plot_bw <- function(x, y, c = 0, p = 1, triangular = T, h_bw = NULL){
   # Plots
   out <- data.frame(coef = coef, ci_up = ci_up, ci_low = ci_low, h = h)
 
-  ggplot2::ggplot(out, ggplot2::aes(x = h, y = coef)) + ggplot2::geom_line(size = 0.82) +
+  p1 <- ggplot2::ggplot(out, ggplot2::aes(x = h, y = coef)) + ggplot2::geom_line(size = 0.82) +
     ggplot2::geom_ribbon(ggplot2::aes(ymin = ci_up, ymax = ci_low), alpha = 0.2) +
     ggplot2::scale_y_continuous(expand = c(0, 0)) +
     ggplot2::scale_x_continuous(expand = c(0, 0)) +
     ggplot2::geom_hline(yintercept = c, linetype = "dashed", size = 0.3)
+
+
+  if(np){
+
+    coef2 <- ci_up2 <- ci_low2 <- numeric(length(h))
+    df <- data.frame(x = x, y = y, trat = x > 0)
+    for (i in 1:length(h)) {
+      dfbw <- df[abs(df$x) < h[i],]
+      reg <- rdd_np(y ~ trat, data = dfbw, h = h[i])
+      coef2[i] <- reg$coef
+      ci_up2[i] <- reg$coef + 1.96 * reg$se
+      ci_low2[i] <- reg$coef - 1.96 * reg$se
+    }
+
+    out2 <- data.frame(coef = coef2, ci_up = ci_up2, ci_low = ci_low2, h = h)
+    p1 <- p1 + ggplot2::geom_line(data = out2, aes(x = h, y = coef), size = 0.82, linetype = 2)
+  }
+
+  # Return
+  p1
 }

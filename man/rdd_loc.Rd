@@ -16,7 +16,7 @@ rdd_loc(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd",
 
 \item{cluster}{Cluster se;}
 
-\item{p}{Poly order (default 1);}
+\item{p}{Poly order (default 1; 0 for non-parametric);}
 
 \item{bw}{Bandwitdh selector (default mserd);}
 
@@ -30,6 +30,6 @@ rdd_loc(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd",
 A list object.
 }
 \description{
-Estimate local RDD.
+Estimate local RDD (or non-parametric).
 }
 

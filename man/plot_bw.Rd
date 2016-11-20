@@ -4,7 +4,7 @@
 \alias{plot_bw}
 \title{BW plot}
 \usage{
-plot_bw(x, y, c = 0, p = 1, triangular = T, h_bw = NULL)
+plot_bw(x, y, c = 0, p = 1, triangular = T, h_bw = NULL, np = FALSE)
 }
 \arguments{
 \item{x}{scores;}
@@ -18,6 +18,8 @@ plot_bw(x, y, c = 0, p = 1, triangular = T, h_bw = NULL)
 \item{triangular}{Triangular kernel? (default TRUE);}
 
 \item{h_bw}{Vector with initial, final and breaks to calculte the bandwidths;}
+
+\item{np}{Plot non-parametric estimates? (default FALSE).}
 }
 \value{
 A ggplot object;
