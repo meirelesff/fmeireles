@@ -43,11 +43,12 @@ plot_bw <- function(x, y, c = 0, p = 1, triangular = T, cluster = NULL, h_bw = N
 
   # Plots
   out <- data.frame(coef = coef, ci_up = ci_up, ci_low = ci_low, h = h)
+  brs <- round(as.numeric(quantile(h, probs = seq(0, 1, by = .2))), 1)
 
   p1 <- ggplot2::ggplot(out, ggplot2::aes(x = h, y = coef)) + ggplot2::geom_line(size = 0.82) +
     ggplot2::geom_ribbon(ggplot2::aes(ymin = ci_up, ymax = ci_low), alpha = 0.2) +
     ggplot2::scale_y_continuous(expand = c(0, 0)) +
-    ggplot2::scale_x_continuous(expand = c(0, 0)) +
+    ggplot2::scale_x_continuous(expand = c(0, 0), breaks = brs) +
     ggplot2::geom_hline(yintercept = c, linetype = "dashed", size = 0.3)
 
 
