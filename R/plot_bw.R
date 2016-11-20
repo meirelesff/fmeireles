@@ -8,7 +8,8 @@
 #' @param p Poly order (default 1);
 #' @param triangular Triangular kernel? (default TRUE);
 #' @param h_bw Vector with initial, final and breaks to calculte the bandwidths;
-#' @param np Plot non-parametric estimates? (default FALSE).
+#' @param np Plot non-parametric estimates? (default FALSE);
+#' @param cluster Cluster se.
 #'
 #' @import ggplot2
 #' @import Formula
@@ -17,7 +18,7 @@
 #'
 #' @return A ggplot object;
 
-plot_bw <- function(x, y, c = 0, p = 1, triangular = T, h_bw = NULL, np = FALSE){
+plot_bw <- function(x, y, c = 0, p = 1, triangular = T, cluster = NULL, h_bw = NULL, np = FALSE){
 
   # Input tests
   if(!is.numeric(x) | !is.numeric(c)) stop("x and c must be numeric.") else xc <- x - c
@@ -34,7 +35,7 @@ plot_bw <- function(x, y, c = 0, p = 1, triangular = T, h_bw = NULL, np = FALSE)
   # Calculate the estimates
   coef <- ci_up <- ci_low <- numeric(length(h))
   for (i in 1:length(h)){
-    reg <- rdd_loc(x = x, y = y, c = c, p = p, triangular = triangular, h = h[i])
+    reg <- rdd_loc(x = x, y = y, c = c, p = p, triangular = triangular, cluster = cluster, h = h[i])
     coef[i] <- reg$coef
     ci_up[i] <- reg$coef + 1.96 * reg$se
     ci_low[i] <- reg$coef - 1.96 * reg$se
@@ -53,10 +54,8 @@ plot_bw <- function(x, y, c = 0, p = 1, triangular = T, h_bw = NULL, np = FALSE)
   if(np){
 
     coef2 <- ci_up2 <- ci_low2 <- numeric(length(h))
-    df <- data.frame(x = x, y = y, trat = x > 0)
     for (i in 1:length(h)) {
-      dfbw <- df[abs(df$x) < h[i],]
-      reg <- rdd_np(y ~ trat, data = dfbw, h = h[i])
+      reg <- loc_rdd(x = x, y = y, c = c, p = 0, triangular = triangular, cluster = cluster, h = h[i])
       coef2[i] <- reg$coef
       ci_up2[i] <- reg$coef + 1.96 * reg$se
       ci_low2[i] <- reg$coef - 1.96 * reg$se
