@@ -22,6 +22,7 @@ theme_cp <- function (tam.fonte = 12, fonte = "sans") {
            axis.ticks = ggplot2::element_blank(),
            legend.position = "bottom",
            legend.key = ggplot2::element_blank(),
+           legend.text = ggplot2::element_text(size = tam.fonte),
            strip.background = ggplot2::element_blank(),
            strip.text = ggplot2::element_text(size = tam.fonte),
            panel.grid = ggplot2::element_blank(),
