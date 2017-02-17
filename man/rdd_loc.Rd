@@ -5,7 +5,7 @@
 \title{RDD local}
 \usage{
 rdd_loc(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd",
-  var.name = "var", h = NULL, triangular = T)
+  var.name = "var", h = NULL, triangular = T, err = "HC1")
 }
 \arguments{
 \item{x}{Scores;}
@@ -25,6 +25,8 @@ rdd_loc(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd",
 \item{h}{Bandwidth. If filled, \code{bw} is ignored;}
 
 \item{triangular}{Triangular kernel? (default TRUE).}
+
+\item{err}{Type of error (default 'HC1').}
 }
 \value{
 A list object.

@@ -11,6 +11,7 @@
 #' @param var.name Variable name;
 #' @param h Bandwidth. If filled, \code{bw} is ignored;
 #' @param triangular Triangular kernel? (default TRUE).
+#' @param err Type of error (default 'HC1').
 #'
 #' @import lmtest
 #' @import sandwich
@@ -21,7 +22,7 @@
 #'
 #' @return A list object.
 
-rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name = "var", h = NULL, triangular = T){
+rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name = "var", h = NULL, triangular = T, err = "HC1"){
 
   # tests the inputs
   if(!is.numeric(x) | !is.numeric(y)) stop("x e y must be numeric.")
@@ -30,6 +31,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
   if(c < xrange[1] | c > xrange[2]) stop("c is out of x.")
   if(!is.character(var.name) & !is.null(var.name)) stop("var.name must be character.")
   if(!is.logical(triangular)) stop("triangular must be logical.")
+  if(!err %in% c("HC3", "const", "HC", "HC0", "HC1", "HC2", "HC4", "HC4m", "HC5")) stop("Invalid error type.")
 
   # cleans the data
   if(!is.null(cluster)) data <- data.frame(x = x, y = y, cluster = as.character(cluster))
@@ -77,7 +79,7 @@ rdd_loc <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name =
 
     se <- cluster_se(model = reg, cluster = data$cluster)
   }
-  else se <- as.numeric(sqrt(diag(sandwich::vcovHC(reg, type = "HC1")))[2])
+  else se <- as.numeric(sqrt(diag(sandwich::vcovHC(reg, type = err)))[2])
   ci_low <- round(coef - 1.96 * se, 2)
   ci_up <- round(coef + 1.96 * se, 2)
   N <- sum(summary(reg)$df[1:2])
