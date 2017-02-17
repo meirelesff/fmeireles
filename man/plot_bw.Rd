@@ -5,7 +5,7 @@
 \title{BW plot}
 \usage{
 plot_bw(x, y, c = 0, p = 1, triangular = T, cluster = NULL,
-  h_bw = NULL, np = FALSE)
+  h_bw = NULL, np = FALSE, err = "HC1")
 }
 \arguments{
 \item{x}{scores;}
@@ -23,6 +23,8 @@ plot_bw(x, y, c = 0, p = 1, triangular = T, cluster = NULL,
 \item{h_bw}{Vector with initial, final and breaks to calculte the bandwidths;}
 
 \item{np}{Plot non-parametric estimates? (default FALSE);}
+
+\item{err}{Type of error (default 'HC1').}
 }
 \value{
 A ggplot object;

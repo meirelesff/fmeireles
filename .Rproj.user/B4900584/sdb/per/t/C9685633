@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "#' My ggplot2 theme, 2\n#'\n#' A ggplot2 theme for everyday use, without axes.\n#'\n#'\n#' @param tam.fonte Font size\n#' @param fonte Font type\n#'\n#' @import ggplot2\n#'\n#' @export\n\ntheme_cp2 <- function (tam.fonte = 12, fonte = \"sans\") {\n\n  (ggplot2::theme_minimal(base_size = tam.fonte, base_family = fonte) +\n     ggplot2::theme(legend.position = \"bottom\",\n                    legend.title = element_blank(),\n                    legend.key = ggplot2::element_blank(),\n                    axis.text = element_text(color = \"gray10\")))\n}\n",
+    "contents" : "#' My ggplot2 theme, 2\n#'\n#' A ggplot2 theme for everyday use, without axes.\n#'\n#'\n#' @param tam.fonte Font size\n#' @param fonte Font type\n#'\n#' @import ggplot2\n#'\n#' @export\n\ntheme_cp2 <- function (tam.fonte = 12, fonte = \"sans\") {\n\n  (ggplot2::theme_minimal(base_size = tam.fonte, base_family = fonte) +\n     ggplot2::theme(plot.title = ggplot2::element_text(vjust = 0, margin = ggplot2::margin(0, 0, 20, 0)),\n                    axis.title.y = ggplot2::element_text(angle = 90, margin = ggplot2::margin(0, 15)),\n                    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(15)),\n                    legend.position = \"bottom\",\n                    legend.title = ggplot2::element_blank(),\n                    legend.key = ggplot2::element_blank(),\n                    axis.text = ggplot2::element_text(color = \"gray10\")))\n}\n",
     "created" : 1487332330035.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1195026932",
+    "hash" : "1127468911",
     "id" : "C9685633",
-    "lastKnownWriteTime" : 1487332716,
-    "last_content_update" : 1487332716339,
+    "lastKnownWriteTime" : 1487334385,
+    "last_content_update" : 1487334385479,
     "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/R/theme_cp2.R",
     "project_path" : "R/theme_cp2.R",
     "properties" : {
