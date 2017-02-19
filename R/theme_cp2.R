@@ -21,5 +21,5 @@ theme_cp2 <- function (tam.fonte = 12, fonte = "sans") {
                     legend.position = "bottom",
                     legend.title = ggplot2::element_blank(),
                     legend.key = ggplot2::element_blank(),
-                    axis.text = ggplot2::element_text(color = "gray10")))
+                    axis.text = ggplot2::element_text(color = "gray10", size = tam.fonte)))
 }

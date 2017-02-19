@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "#' My ggplot2 theme, 2\n#'\n#' A ggplot2 theme for everyday use, without axes.\n#'\n#'\n#' @param tam.fonte Font size\n#' @param fonte Font type\n#'\n#' @import ggplot2\n#'\n#' @export\n\ntheme_cp2 <- function (tam.fonte = 12, fonte = \"sans\") {\n\n  (ggplot2::theme_minimal(base_size = tam.fonte, base_family = fonte) +\n     ggplot2::theme(plot.title = ggplot2::element_text(vjust = 0, margin = ggplot2::margin(0, 0, 20, 0)),\n                    axis.title.y = ggplot2::element_text(angle = 90, margin = ggplot2::margin(0, 15)),\n                    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(15)),\n                    axis.title = ggplot2::element_text(size = tam.fonte),\n                    title = ggplot2::element_text(size = tam.fonte),\n                    legend.position = \"bottom\",\n                    legend.title = ggplot2::element_blank(),\n                    legend.key = ggplot2::element_blank(),\n                    axis.text = ggplot2::element_text(color = \"gray10\")))\n}\n",
+    "contents" : "#' My ggplot2 theme, 2\n#'\n#' A ggplot2 theme for everyday use, without axes.\n#'\n#'\n#' @param tam.fonte Font size\n#' @param fonte Font type\n#'\n#' @import ggplot2\n#'\n#' @export\n\ntheme_cp2 <- function (tam.fonte = 12, fonte = \"sans\") {\n\n  (ggplot2::theme_minimal(base_size = tam.fonte, base_family = fonte) +\n     ggplot2::theme(plot.title = ggplot2::element_text(vjust = 0, margin = ggplot2::margin(0, 0, 20, 0)),\n                    axis.title.y = ggplot2::element_text(angle = 90, margin = ggplot2::margin(0, 15)),\n                    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(15)),\n                    axis.title = ggplot2::element_text(size = tam.fonte),\n                    title = ggplot2::element_text(size = tam.fonte),\n                    legend.position = \"bottom\",\n                    legend.title = ggplot2::element_blank(),\n                    legend.key = ggplot2::element_blank(),\n                    axis.text = ggplot2::element_text(color = \"gray10\", size = tam.fonte)))\n}\n",
     "created" : 1487526167917.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3078583759",
+    "hash" : "4096613909",
     "id" : "9C8EA225",
-    "lastKnownWriteTime" : 1487526226,
-    "last_content_update" : 1487526226049,
+    "lastKnownWriteTime" : 1487527369,
+    "last_content_update" : 1487527369543,
     "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/R/theme_cp2.R",
     "project_path" : "R/theme_cp2.R",
     "properties" : {
