@@ -4,12 +4,14 @@
 \alias{theme_cp2}
 \title{My ggplot2 theme, 2}
 \usage{
-theme_cp2(tam.fonte = 12, fonte = "sans")
+theme_cp2(tam.fonte = 12, fonte = "sans", tam.titulo = 14)
 }
 \arguments{
 \item{tam.fonte}{Font size}
 
 \item{fonte}{Font type}
+
+\item{tam.titulo}{Title font size}
 }
 \description{
 A ggplot2 theme for everyday use, without axes.
