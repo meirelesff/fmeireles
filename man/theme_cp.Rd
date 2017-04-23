@@ -14,4 +14,3 @@ theme_cp(tam.fonte = 12, fonte = "sans")
 \description{
 A ggplot2 theme for everyday use.
 }
-

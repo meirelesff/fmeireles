@@ -32,4 +32,3 @@ A ggplot object;
 \description{
 Function to plot the sensibility of RDD estimates to the bandwidth.
 }
-

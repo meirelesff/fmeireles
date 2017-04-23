@@ -25,4 +25,3 @@ rd_sim(tau = 1, N = 1000, c = NULL, beta0 = 0, beta1 = 1, beta2 = 1,
 \description{
 Simulate data for RDD
 }
-

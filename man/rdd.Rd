@@ -18,4 +18,3 @@ rdd(y, x, rep = c("all", "conv"), ...)
 \description{
 A wrapper function to estimate multiple rdds.
 }
-

@@ -4,7 +4,8 @@
 \alias{rdd_np}
 \title{Non-parametric RDD}
 \usage{
-rdd_np(formula, data, h = "All", w = NULL, var.name = "var")
+rdd_np(formula, data, h = "All", w = NULL, var.name = "var",
+  cluster = NULL, err = "HC1")
 }
 \arguments{
 \item{formula}{Formula}
@@ -16,8 +17,11 @@ rdd_np(formula, data, h = "All", w = NULL, var.name = "var")
 \item{w}{weigths}
 
 \item{var.name}{Variable name}
+
+\item{cluster}{Cluster variable to estimate cluster errors}
+
+\item{err}{Error}
 }
 \description{
 Non-parametric RDD estimation
 }
-

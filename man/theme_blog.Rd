@@ -16,4 +16,3 @@ theme_blog(tamanho = 14, fonte = "sans", title.fonte = NULL)
 \description{
 A ggplot2 theme for my blog plots.
 }
-

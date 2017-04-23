@@ -16,4 +16,3 @@ theme_cp2(tam.fonte = 12, fonte = "sans", tam.titulo = 14)
 \description{
 A ggplot2 theme for everyday use, without axes.
 }
-

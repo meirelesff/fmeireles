@@ -16,4 +16,3 @@ triangular(x, h, c)
 \description{
 Calculate triagular kernel weigths.
 }
-

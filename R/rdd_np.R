@@ -8,14 +8,17 @@
 #' @param h Bandwidth
 #' @param w weigths
 #' @param var.name Variable name
+#' @param cluster Cluster variable to estimate cluster errors
+#' @param err Error
 #'
+#' @import multiwayvcov
 #' @import Formula
 #' @import sandwich
 #' @import stats
 #'
 #' @export
 
-rdd_np <- function(formula, data, h = "All", w = NULL, var.name = "var"){
+rdd_np <- function(formula, data, h = "All", w = NULL, var.name = "var", cluster = NULL, err = "HC1"){
 
 
   formula <- Formula::as.Formula(formula)
@@ -24,7 +27,16 @@ rdd_np <- function(formula, data, h = "All", w = NULL, var.name = "var"){
   else mod <- lm(formula, data = data, weights = w)
 
   coef <- as.numeric(coef(mod)[2])
-  se <- as.numeric(sqrt(diag(sandwich::vcovHC(mod, type = "HC1")))[2])
+
+  if(!is.null(cluster)){
+
+    se <- as.numeric(sqrt(diag(sandwich::vcovHC(mod, type = err)))[2])
+  } else {
+
+    se <- multiwayvcov::cluster.vcov(mod, cluster)
+    se <- lmtest::coeftest(mod, se)[2, 2]
+  }
+
   ci_low <- round(coef - 1.96 * se, 2)
   ci_up <- round(coef + 1.96 * se, 2)
   N <- sum(summary(mod)$df[1:2])

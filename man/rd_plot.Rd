@@ -45,4 +45,3 @@ A ggplot2 object
 \description{
 A function to create RDD plots.
 }
-

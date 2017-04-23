@@ -16,4 +16,3 @@ check_rdd(y, x, ...)
 \description{
 A wrapper function to estimate multiple rdds with different polynomials.
 }
-

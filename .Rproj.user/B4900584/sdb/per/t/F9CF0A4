@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Non-parametric RDD\n#'\n#' Non-parametric RDD estimation\n#'\n#'\n#' @param formula Formula\n#' @param data Data\n#' @param h Bandwidth\n#' @param w weigths\n#' @param var.name Variable name\n#' @param cluster Cluster variable to estimate cluster errors\n#' @param err Error\n#'\n#' @import multiwayvcov\n#' @import Formula\n#' @import sandwich\n#' @import stats\n#'\n#' @export\n\nrdd_np <- function(formula, data, h = \"All\", w = NULL, var.name = \"var\", cluster = NULL, err = \"HC1\"){\n\n\n  formula <- Formula::as.Formula(formula)\n\n  if(is.null(w)) mod <- lm(formula, data = data)\n  else mod <- lm(formula, data = data, weights = w)\n\n  coef <- as.numeric(coef(mod)[2])\n\n  if(!is.null(cluster)){\n\n    se <- as.numeric(sqrt(diag(sandwich::vcovHC(mod, type = err)))[2])\n  } else {\n\n    se <- multiwayvcov::cluster.vcov(mod, cluster)\n    se <- lmtest::coeftest(mod, se)[2, 2]\n  }\n\n  ci_low <- round(coef - 1.96 * se, 2)\n  ci_up <- round(coef + 1.96 * se, 2)\n  N <- sum(summary(mod)$df[1:2])\n\n  if (!is.numeric(se))\n    stop(\"SE wrong.\")\n  if (!is.numeric(coef))\n    stop(\"COEF wrong.\")\n\n  pval <- 2 * stats::pnorm(abs(coef / se), lower.tail = F)\n\n  if(pval < 0.05) coef_ast <- paste0(round(coef, 2), \"*\")\n  else coef_ast <- round(coef, 2)\n\n  res <- data.frame(var.name = var.name, coef = coef_ast, se = round(se, 2), pval = round(pval, 2), bw = h, N = N)\n  res <- apply(res, 2, as.character)\n\n  out <- list(res = res,\n              coef = coef,\n              se = se,\n              pval = pval,\n              h = h,\n              mod = mod)\n\n  out\n}\n",
+    "created" : 1492958433851.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2109017541",
+    "id" : "F9CF0A4",
+    "lastKnownWriteTime" : 1492958750,
+    "last_content_update" : 1492958750518,
+    "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/R/rdd_np.R",
+    "project_path" : "R/rdd_np.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

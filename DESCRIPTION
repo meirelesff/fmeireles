@@ -6,5 +6,5 @@ Authors@R: person("Fernando", "Meireles", email = "fernando.meireles@ufrgs.br", 
 Description: Functions and tools to clean, visualize, and analyze data.
 License: GPL (>= 2)
 LazyData: TRUE
-RoxygenNote: 5.0.1
-Imports: ggplot2, dplyr, rdrobust, stats, Formula, sandwich, lmtest
+RoxygenNote: 6.0.1
+Imports: ggplot2, dplyr, rdrobust, stats, Formula, sandwich, lmtest, multiwayvcov
