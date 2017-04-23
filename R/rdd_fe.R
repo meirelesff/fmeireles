@@ -38,7 +38,7 @@ rdd_fe <- function(x, y, c = 0, cluster = NULL, p = 1, bw = "mserd", var.name = 
 
   # cleans the data
   if(!is.null(cluster)) data <- data.frame(x = x, y = y, cluster = as.character(cluster), fe = as.character(fe))
-  else data <- data.frame(x = x, y = y, fe1 = as.character(fe))
+  else data <- data.frame(x = x, y = y, fe = as.character(fe))
   data <- data[complete.cases(data),]
   data$x <- data$x - c
 
