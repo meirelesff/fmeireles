@@ -28,7 +28,7 @@ rdd_np <- function(formula, data, h = "All", w = NULL, var.name = "var", cluster
 
   coef <- as.numeric(coef(mod)[2])
 
-  if(!is.null(cluster)){
+  if(is.null(cluster)){
 
     se <- as.numeric(sqrt(diag(sandwich::vcovHC(mod, type = err)))[2])
   } else {
