@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: fmeireles\nType: Package\nTitle: My personal R package\nVersion: 0.1.0\nAuthors@R: person(\"Fernando\", \"Meireles\", email = \"fernando.meireles@ufrgs.br\", role = c(\"aut\", \"cre\"))\nDescription: Functions and tools to clean, visualize, and analyze data.\nLicense: GPL (>= 2)\nLazyData: TRUE\nRoxygenNote: 6.0.1\nImports: ggplot2, dplyr, rdrobust, stats, Formula, sandwich, lmtest, multiwayvcov\n",
+    "created" : 1492967552881.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1981407570",
+    "id" : "4E02CAC6",
+    "lastKnownWriteTime" : 1492967751,
+    "last_content_update" : 1492967751816,
+    "path" : "C:/Users/User/Google Drive/R/Pacotes/fmeireles/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}
